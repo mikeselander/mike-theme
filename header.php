@@ -14,7 +14,7 @@
 {
   "@context": "http://schema.org",
   "@type": "Person",
-  "image": "http://mikeselander.com/wp-content/themes/mike/images/me.png",
+  "image": "http://mikeselander.com/wp-content/themes/mike/images/me.jpg",
   "name": "Mike Selander",
   "additionalName": "Mike",
   "email": "mikeselander@gmail.com",
@@ -52,7 +52,7 @@
 
 	    <a id="menu-toggle" href="#mobile-nav" class="nav-icon trigger"><span></span></a>
 
-		<img src="<?php echo get_template_directory_uri(); ?>/images/me.png">
+		<img src="<?php echo get_template_directory_uri(); ?>/images/me.jpg" alt="<?php echo get_bloginfo('name') ?>">
 
 		<h2><a href="<?php echo site_url(); ?>">Mike Selander</a></h2>
 
@@ -65,18 +65,18 @@
 		</nav>
 
 		<p class="social">
-			<a href="https://profiles.wordpress.org/mikeselander" target="_blank"><i class="fa fa-wordpress"></i></a>
-			<a href="https://github.com/mikeselander" target="_blank"><i class="fa fa-github"></i></a>
-			<a href="https://twitter.com/Mike_Selander" target="_blank"><i class="fa fa-twitter"></i></a>
-			<a href="http://www.linkedin.com/in/mikeselander/" target="_blank"><i class="fa fa-linkedin"></i></a>
-			<a href="mailto:mikeselander@gmail.com"><i class="fa fa-envelope"></i></a>
+			<a href="https://profiles.wordpress.org/mikeselander" target="_blank" aria-label="WordPress Profile"><i class="fa fa-wordpress"></i></a>
+			<a href="https://github.com/mikeselander" target="_blank" aria-label="Github Profile"><i class="fa fa-github"></i></a>
+			<a href="https://twitter.com/Mike_Selander" target="_blank" aria-label="Twitter Profile"><i class="fa fa-twitter"></i></a>
+			<a href="http://www.linkedin.com/in/mikeselander/" target="_blank" aria-label="LInkedIn Profile"><i class="fa fa-linkedin"></i></a>
+			<a href="mailto:mikeselander@gmail.com" aria-label="Email me"><i class="fa fa-envelope"></i></a>
 		</p>
 
 	</div>
 
 	<div class="mobile-header">
 
-		<img src="<?php echo get_template_directory_uri(); ?>/images/me.png">
+		<img src="<?php echo get_template_directory_uri(); ?>/images/me.jpg" alt="<?php echo get_bloginfo('name') ?> Mobile">
 
 		<h4><a href="<?php echo site_url(); ?>">Mike Selander</a></h4>
 

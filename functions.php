@@ -26,7 +26,7 @@ class DefaultFunctions{
 		add_action( 'init', array( $this, 'otm_register_menus' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_styles' ) );
 		add_action( 'init', array( $this, 'editor_styles' ) );
-		add_action( 'init', array( $this, 'otm_theme_scripts' ) );
+		add_action( 'wp_print_footer_scripts', array( $this, 'otm_theme_scripts' ) );
 		add_action( 'admin_init', array( $this, 'imagelink_setup' ), 10 );
 
 		// Base Filters
@@ -162,10 +162,20 @@ class DefaultFunctions{
 	 */
 	public function otm_theme_scripts(){
 
-	    if ( !is_admin() ){
-	        wp_register_script( 'otm_theme', get_template_directory_uri() . '/js/scripts.min.js#deferload', array( 'jquery' ), '' );
-	        wp_enqueue_script( 'otm_theme' );
-	    }
+		// For the record, I prefer using a dedicated file JS file. However,
+		// since there's this little js, inlining it made a LOT more sense
+	   	?>
+<script>
+	(function($) {
+		$(document).ready(function() {
+			$( '.trigger' ).click( function(e) {
+				$('body').toggleClass( 'menu-shown' );
+				e.preventDefault();
+		    });
+		});
+	})( jQuery );
+</script>
+	   	<?php
 
 	}
 
