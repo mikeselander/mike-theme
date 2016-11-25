@@ -6,22 +6,22 @@ Template Name: Blog
 get_header(); ?>
 
 <div <?php post_class('container'); ?>>
-	<main>
+	<div class="main">
 
         <?php if ( have_posts() ) while ( have_posts() ) : the_post();
 
 		echo "<header class='content'>";
-	        echo "<h1>".get_the_title()."</h1>";
+	        echo "<h1>" . esc_html( get_the_title() ) . "</h1>";
 		echo "</header>";
 
-        the_content();
+		the_content();
 
-        endwhile;
+		endwhile;
+
+	echo "</div>";
 
         rewind_posts();
 
-        $temp = $wp_query;
-        $wp_query = null;
         $wp_query = new WP_Query();
         $wp_query->query( array(
         	'showposts'	=> 5,
@@ -38,7 +38,6 @@ get_header(); ?>
 
         wp_reset_query(); ?>
 
-	</main>
 </div>
 
 <?php get_footer(); ?>

@@ -1,29 +1,19 @@
-<?php
-/**
- * The template for displaying 404 pages (Not Found).
- *
- * @package WordPress
- */
-get_header(); ?>
+<?php get_header(); ?>
 
-	<div class="container">
-	    <div class="content">
+    <div <?php post_class( 'container' ); ?>>
 
-	        <div class="main" role="main">
+		<div class="main">
 
-	            <header>
-		            <h1>Oops! That page can't be found.</h1>
-	            </header>
+			<header>
+	            <h1>Whoops!</h1>
+			</header>
 
-	            <p>
-	                Looks like something's not where it's supposed to be. You might try searching below.
-	            </p>
+			<h3>
+				Looks like something's wired wrong. I'll look into it!
+			</h3>
 
-	        </div>
+		</div>
 
-	        <?php get_sidebar(); ?>
-
-	    </div>
-	</div>
+    </div>
 
 <?php get_footer(); ?>

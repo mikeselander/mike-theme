@@ -1,24 +1,24 @@
 <?php get_header(); ?>
 
-    <div <?php post_class('content'); ?>>
-        <div class="main" role="main">
-        	<article>
+    <div <?php post_class( 'container' ); ?>>
 
-            <?php if ( have_posts() ) while ( have_posts() ) : the_post();
+		<div class="main">
 
-            	echo "<header>";
-	                echo "<h1>".get_the_title()."</h1>";
+			<?php if ( have_posts() ) while ( have_posts() ) : the_post();
+
+				echo "<header>";
+		            echo "<h1>" . esc_html( get_the_title() ) . "</h1>";
 				echo "</header>";
-
-                the_content();
 
             endwhile; ?>
 
-            </article>
+		</div>
 
-        </div>
+		<div class="blog">
 
-        <?php get_sidebar(); ?>
+			<?php the_content(); ?>
+
+		</div>
 
     </div>
 

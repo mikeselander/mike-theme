@@ -1,21 +1,43 @@
 <?php get_header(); ?>
 
-    <div <?php post_class('container'); ?>>
-    	<article class="content">
-	        <div class="main" role="main">
+    <div <?php post_class( 'container' ); ?>>
 
-            <?php if ( have_posts() ) while ( have_posts() ) : the_post();
+		<div class="main">
+
+			<?php if ( have_posts() ) while ( have_posts() ) : the_post();
 
 				echo "<header>";
-		            echo "<h1>".get_the_title()."</h1>";
+		            echo "<h1>".esc_html( get_the_title() )."</h1>";
 				echo "</header>";
 
-	            the_content();
+				echo "<h3>";
+		            the_content();
+		        echo "</h3>";
 
             endwhile; ?>
 
-	        </div>
-    	</article>
+		</div>
+
+		<?php
+
+			$query = array(
+				'post_type'		 => 'post',
+				'posts_per_page' => 3,
+				'no_found_rows'  => true,  
+			);
+
+			$posts = new WP_Query( $query );
+
+			if ( $posts->have_posts() )	:
+
+				while ( $posts->have_posts() ) : $posts->the_post();
+
+					get_template_part( 'content', 'post' );
+
+				endwhile;
+
+			endif;
+		?>
 
     </div>
 

@@ -1,304 +1,220 @@
-// Definitions
+	// Fonts
+	$open: 'Open Sans', sans-serif;
+	$libre: 'Libre Baskerville', serif;
 
-	$source: 'Source Sans Pro', sans-serif;
+	// Colors
+	$complementary: #FF6600;
 
-	$header-width: 350px;
-
-	$red: #ed786a;
-	$grey: #777777;
-
+	// Breakpoints
 	$tablet: 700px;
-	$mid-width: 850px;
-	$full-width: 1150px;
+	$mid-width: 900px;
 
-// Mixins
-
+	// Mixins
 	@mixin mq( $breakpoint ){
 		@media screen and ( min-width: $breakpoint ){
 			@content;
 		}
 	}
 
-@import 'sass/_normalize.scss',
-		'sass/_burger.scss',
-		'sass/_fontawesome.scss';
+html{
+	overflow-x: hidden;
+}
 
 body{
-	font: 300 20px/1.7 $source;
-	color: $grey;
-	padding-top: 40px;
-}
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font: 400 .7rem/1.6 $libre;
+	color: #444444;
+	overflow-x: hidden;
 
 	@include mq( $tablet ){
-		body{
-			padding-top: 0;
-		}
+		font-size: .8em;
 	}
 
-p, li{
-	font-family: 'Ubuntu';
-	font-size: 17px;
+	@include mq( $mid-width ){
+		font-size: 1em;
+	}
 }
 
-h1, h2, h3, h4{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+	font-family: $open;
+	margin: .15em 0;
+	line-height: 1.2;
+}
+
+h1{
+	font-family: $libre;
+	font-size: 5em;
+	font-weigt: bold;
+}
+
+h2{
+	font-size: 3em;
+
 	a{
 		color: inherit;
 	}
 }
 
-h1{
-	font: 800 50px $source;
-	color: $grey;
-	text-transform: uppercase;
-}
-
-h2{
-	font: 600 28px $source;
-	color: $red;
-	text-transform: uppercase;
-}
-
 h3{
-	font: 600 18px $source;
-	color: $grey;
-	text-transform: uppercase;
+	font-style: italic;
+	line-height: 1.5;
 }
 
 h4{
-
+	font-size: 1.75em;
 }
 
 a{
-	color: $red;
+	color: $complementary;
+	font-weight: bold;
+	text-decoration: none;
+	transition: all 0.3s ease;
 }
 
-.icon{
-	width: 1.5em;
-	height: 1.5em;
-	line-height: 1.5em;
-	background: $red;
-	color: #ffffff;
-	text-align: center;
-	border-radius: 50%;
+p{
+	margin: 15px 0;
 }
 
-.button, .nav-links a{
-	display: inline-block;
-	font: 16px/1.8 $source;
-	color: #fff;
-	background-color: $red;
-	padding: 0 15px;
-	border-radius: 3px;
+p,
+li{
+	font-size: .9rem;
 
-	&:hover{
-		background-color: $grey;
+	@include mq( 800px ){
+		font-size: 1rem;
 	}
 }
 
-.nav-links a{
-	background-color: $grey;
+blockquote{
+	font-size: 1.3em;
+	position: relative;
+	margin-left: 50px;
 
-	&:hover{
-		background-color: $red;
+	&:before{
+		content: '\0022';
+		position: absolute;
+		left: -40px;
+		font-size: 4em;
+		line-height: 1;
 	}
 }
 
-.mobile-header{
-	position: fixed;
-	top: 0;
-	width: 100%;
-	background: $red;
-	padding: 5px;
+table{
+	border-collapse: collapse;
+	margin: 10px 0;
 
-	img, h4{
-		float: left;
+	th,
+	td{
+		padding: 7px;
+		border-bottom: 1px solid #ccc;
 	}
 
-	img{
-		max-width: 40px;
-		border-radius: 50%;
-		margin-right: 10px;
-		margin-top: 3px;
-	}
-
-	h4{
+	th{
 		font-weight: bold;
-		font-size: 22px;
-		line-height: 1.6em;
-		color: #ffffff;
-		text-transform: uppercase;
+		text-align: left;
+	}
+}
+
+.site-header{
+	margin: 15px auto;
+	width: 95%;
+	max-width: 1100px;
+	overflow-x: hidden;
+	color: #202020;
+
+	p,
+	ul{
+		max-width: 50%;
+
+		@include mq( 600px ){
+			max-width: 100%;
+		}
 	}
 
-	.trigger{
-		z-index: 105;
-		transition: all 0.5s ease-in-out;
-		align-self: center;
+	a{
+		color: inherit;
+
+		&:hover,
+		&:focus{
+			color: $complementary;
+		}
+	}
+
+	.logo{
+		float: left;
+		font-size: 1.3rem;
+	}
+
+	ul{
 		float: right;
-		margin-top: 15px;
-		margin-right: 5px;
-
-		span{
-			@include burger( 25px, 3px, 5px, #ffffff );
-		}
-	}
-}
-
-@media screen and (max-width: 700px){
-
-	body{
-
-		&.menu-shown{
-
-			.trigger span{
-				@include burger-to-cross;
-			}
-
-			.header{
-				left:0;
-				opacity:1;
-				visibility:visible;
-			}
-		}
-	}
-}
-
-.header{
-	position: fixed;
-	width: $header-width;
-	height: 100vh;
-	top: 0;
-	left: -$header-width;
-	z-index: 150;
-	background: $red;
-	padding: 15px 0;
-	text-align: center;
-	transition: all 0.4s ease-in-out;
-
-	h2{
-		font: 600 28px $source;
-		color: #ffffff;
-		text-transform: uppercase;
-	}
-
-	img{
-		max-width: 75%;
-		border-radius: 50%;
-		border: 3px solid rgba(255,255,255,.5);
-		margin-bottom: 10px;
-	}
-
-	.menu{
+		text-align: right;
 		padding-left: 0;
 
 		li{
-			font: 20px/2.3em $source;
-			border-bottom: 1px solid rgba(255,255,255,.1);
+			list-style-type: none;
+			display: inline-block;
+			font-size: 1.1rem;
+			text-transform: uppercase;
 
-			a{
-				display: block;
-				color: #ffffff;
+			&:after{
+				content: "/";
+				padding: 0 10px;
+			}
 
-				&:hover{
-					background: #ffffff;
-					color: $red;
+			@include mq( $tablet ){
+				&:last-of-type:after{
+					display: none;
 				}
 			}
 		}
 	}
-
-	.social{
-
-		a{
-			color: $red;
-			background: rgba(255,255,255,.5);
-			padding: 5px;
-			border-radius: 50%;
-			margin-right: 3px;
-			text-align: center;
-
-			&:hover{
-				background: #ffffff;
-			}
-
-			i{
-				width: 18px;
-			}
-		}
-	}
 }
 
-	@include mq( $tablet ){
-		.mobile-header{
-			display: none;
-		}
+.main{
+	h1{
+		font-size: 6em;
 	}
 
-	@include mq( $mid-width ){
-		.header{
-			left: 0;
-		}
-	}
-
-.banner{
-	&+.container h1{
-		margin-top:-100px;
-		color: #fff;
+	h3 a{
+		color: inherit;
+		text-decoration: underline;
 	}
 }
 
 .container{
-	width: 100%;
+	width: 95%;
+	margin: auto;
+	max-width: 900px;
+	clear: both;
 
-	.content{
-		padding: 25px 4%;
-		border-bottom: 4px solid rgba(0,0,0,.05);
+	&>div{
+		margin: 15px 0;
+		padding: 15px 0;
 	}
 }
 
-	@include mq( $mid-width ){
-		.container{
-			padding-left: $header-width;
-			max-width: 1800px;
-		}
-	}
-
-.skills{
-	padding-left: 0;
-	display: flex;
-	flex-wrap: wrap;
-
-	li{
-		margin-bottom: 3px;
-		flex: 1 0 50%;
-		list-style-type: none;
-		padding-bottom: 5px;
-	}
+img{
+	max-width: 100%;
+	height: auto;
 }
 
-	@include mq( $tablet ){
-		.skills li{
-			flex: 0 1 33%;
-		}
-	}
+img.expand{
+	position: relative;
+	max-width: 200%;
+	left: 50%;
+	transform: translate( -50%, 0 );
+}
 
-	@include mq( $full-width ){
-		.skills li{
-			flex: 0 1 25%;
-		}
-	}
-
-.projects{
-	padding-left: 0;
-
-	li{
-		list-style-type: none;
-
-		img{
-			float: left;
-			margin-right: 15px;
-			margin-bottom: 15px;
-		}
-	}
+div.blog{
+	padding: 15px;
+	border-top: 2px solid #ccc;
 }
 
 .companies{
@@ -306,86 +222,48 @@ a{
 
 	li{
 		list-style-type: none;
-		display: flex;
-		flex-direction: column;
-		margin-bottom: 15px;
-
-		h3{
-			font-size: 20px;
-			color: $red;
-		}
-
-		.title{
-			font-weight: bold;
-		}
 	}
 }
 
-	@include mq( $tablet ){
-		.companies li{
-			flex-direction: row;
+.site-footer{
+	margin: 20px 0;
+	text-align: center;
+	border-top: 2px solid #ccc;
 
-			.left{
-				flex: 1 0 25%;
-
-				img{
-					display: block;
-					margin: auto;
-				}
-			}
-
-			.right{
-				flex: 1 0 75%;
-				padding-left: 5%;
-			}
-		}
-	}
-
-.blog{
-	position: relative;
-
-	h2,
-	h2 a{
-		color: #595959;
-	}
-
-	&.post_format-post-format-link{
-		&:before{
-			font-family: 'FontAwesome';
-			font-size: 1.5em;
-			text-align: center;
-			content: "\f08e";
-			width: 1.5em;
-			height: 1.5em;
-			position: absolute;
-			right: 0;
-			top: 0;
-			color: $grey;
-			background: rgba(0,0,0,.05);
-		}
-	}
-}
-
-.nav-links{
-	div{
+	.social{
+		$social-width: 2em;
 		display: inline-block;
 
-		&+div{
-			float: right;
+		a{
+			display: inline-block;
+			background-color: #444444;
+			height: $social-width;
+			width: $social-width * 1.1;
+			border-radius: 60%;
+			margin-right: 5px;
+			text-align: center;
+			padding-top: 4px;
+
+			&.linkedin,
+			&.github{
+				padding-left: 2px;
+			}
+
+			svg{
+				width: $social-width * .7;
+				height: $social-width * .7;
+				display: inline-block;
+				margin-top: 3px;
+			}
+
+			.svg-main-color{
+				fill: #fff;
+			}
+
+			&:hover,
+			&:focus{
+				background-color: $complementary;
+			}
 		}
 	}
 }
-
-.trigger{
-
-}
-
-	@include mq( $tablet ){
-		.trigger{
-			display: none;
-		}
-	}
-
-@import //'sass/_forms.scss',
-		'sass/_print.scss';
-
